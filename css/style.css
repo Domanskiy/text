@@ -15,9 +15,15 @@
     width: 150px;
     float: left;
 }
+
+
 #main #size {
     float: right;
+    width: 200px;
+    right: 8px;
 }
+
+
 #main textarea {
     width: 800px;
     height: 300px;
