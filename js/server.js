@@ -4,7 +4,7 @@ define(["values", "functions", "config"], function(values, functions, config){
             /* web socket */
             values.size = Math.floor((Math.random()*(config.maxFont-config.minFont))+config.minFont);
             values.family = "tahoma";
-            values.text = "text from server";
+            values.text = "text from server "+values.size;
 
             functions.setAllOptions();
 
