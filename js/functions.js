@@ -1,34 +1,45 @@
-define(["DOM","families"], function(DOM,families) {
+define(["DOM","families", "values", "server"], function(DOM,families,values, server) {
     return {
         init: function(){
             var _this = this;
+
+            /* font size slider */
             DOM.$size.slider({
                 range: "min",
                 min: 10,
                 max: 18,
                 step: 1,
-                value: 14,
+                value: values.size,
                 slide: function(event, ui){
-                   _this.setSize(ui.value);
-                    //setSize(ui.value);
-                    console.log("slide size");
+                    values.size = ui.value;
+                    _this.setSize();
                 },
                 stop: function(event, ui) {
-                    console.log("size changed");
+                    server.sendRequest();
                 }
             });
 
+            /* font family select */
             DOM.$family.change(function(){
-                //setFamily($(this).val());
-                _this.setFamily($(this).val());
-                console.log("family changed");
+                values.family = $(this).val();
+                _this.setFamily();
+                server.sendRequest();
             });
+
+            /* set default values */
+            _this.setSize();
+            DOM.$family.val(values.family);
+            _this.setFamily();
+            DOM.$text.html(values.text);
+
+            /* wait from server */
+            server.waitResponse();
         },
-        setSize: function(size){
-            DOM.$text.css("font-size", size);
+        setSize: function(){
+            DOM.$text.css("font-size", values.size);
         },
-        setFamily: function(family){
-            DOM.$text.css("font-family",families[family]);
+        setFamily: function(){
+            DOM.$text.css("font-family",families[values.family]);
         }
     }
-})
+});

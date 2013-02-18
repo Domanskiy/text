@@ -4,4 +4,4 @@ var textRequire = require.config({
 
 textRequire(["functions"], function(functions) {
     functions.init();
-})
+});
