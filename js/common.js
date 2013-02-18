@@ -11,8 +11,10 @@ $(document).ready(function() {
     }
 
     var defaultSize = 14;
+    var defaultFamily = "tahoma";
     setSize(defaultSize);
-
+    $family.val(defaultFamily);
+    setFamily(defaultFamily);
 
     $size.slider({
         range: "min",
@@ -22,13 +24,15 @@ $(document).ready(function() {
         value: defaultSize,
         slide: function(event, ui){
             setSize(ui.value);
+            console.log("slide size");
         },
         stop: function(event, ui) {
-            console.log("stop");
+            console.log("size changed");
         }
     });
     $family.change(function(){
         setFamily($(this).val());
+        console.log("family changed");
     });
 
     function setSize(size) {
