@@ -4,6 +4,4 @@ var textRequire = require.config({
 
 textRequire(["functions", "events"], function(functions, events) {
     events.assign();
-    //functions.init();
-
 })
